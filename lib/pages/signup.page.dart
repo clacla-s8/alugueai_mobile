@@ -1,7 +1,7 @@
-import 'package:alugueai_mobile/pages/signup.page.dart';
+import 'package:alugueai_mobile/pages/login.page.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,13 +14,69 @@ class LoginPage extends StatelessWidget {
         color: Colors.grey[50],
         child: ListView(
           children: <Widget>[
-            SizedBox(
-              width: 128,
-              height: 128,
-              child: Image.asset("assets/logo.png"),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 40.0),
+                child: Text(
+                  'Cadastre-se',
+                  style: TextStyle(
+                    fontFamily: 'Cardo',
+                    fontSize: 35,
+                    color: Color(0XFF03A9F4),
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                //
+              ),
             ),
             SizedBox(
               height: 20,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: "Nome",
+                labelStyle: TextStyle(
+                  color: Colors.black38,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                ),
+              ),
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: "Telefone",
+                labelStyle: TextStyle(
+                  color: Colors.black38,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                ),
+              ),
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: "Endereço",
+                labelStyle: TextStyle(
+                  color: Colors.black38,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                ),
+              ),
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              height: 10,
             ),
             TextFormField(
               keyboardType: TextInputType.emailAddress,
@@ -35,7 +91,7 @@ class LoginPage extends StatelessWidget {
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             TextFormField(
               keyboardType: TextInputType.text,
@@ -50,64 +106,6 @@ class LoginPage extends StatelessWidget {
               ),
               style: TextStyle(fontSize: 18),
             ),
-            Container(
-              height: 40,
-              alignment: Alignment.centerRight,
-              child: FlatButton(
-                child: Text(
-                  "Recuperar Senha",
-                  textAlign: TextAlign.right,
-                ),
-                onPressed: () {},
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0.3, 1],
-                  colors: [
-                    Color(0XFF03A9F4),
-                    Color(0XFF4FC3F7),
-                  ],
-                ),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: FlatButton(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 18,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                      Container(
-                        child: SizedBox(
-                          child: Image.asset("assets/login-icon2.png"),
-                          height: 28,
-                          width: 28,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onPressed: () => {},
-                ),
-              ),
-            ),
             SizedBox(
               height: 10,
             ),
@@ -115,7 +113,7 @@ class LoginPage extends StatelessWidget {
               height: 50,
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
-                color: Color(0xFF3C5A99),
+                color: Color(0XFF03A9F4),
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
                 ),
@@ -126,20 +124,13 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Login com Facebook",
+                        "Cadastrar",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           fontSize: 18,
                         ),
-                        textAlign: TextAlign.left,
-                      ),
-                      Container(
-                        child: SizedBox(
-                          child: Image.asset("assets/fb-icon.png"),
-                          height: 28,
-                          width: 28,
-                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
@@ -147,15 +138,12 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 15,
-            ),
             Container(
               height: 40,
               alignment: Alignment.centerRight,
               child: FlatButton(
                 child: Text(
-                  "Cadastre-se aqui",
+                  "ou faça login aqui",
                   style: TextStyle(
                     color: Color(0XFF03A9F4),
                     fontSize: 15,
@@ -166,7 +154,7 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => SignupPage()));
+                          builder: (BuildContext context) => LoginPage()));
                 },
               ),
             ),
