@@ -9,7 +9,7 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex = 0;
 
-  final tabs = [
+  final List<Widget> navigatePages = [
     HomePage(),
     Center(
       child: Text("Alugueis"),
@@ -25,7 +25,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: tabs[_currentIndex],
+      body: navigatePages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
