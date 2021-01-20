@@ -148,27 +148,42 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             Container(
-              height: 40,
-              alignment: Alignment.centerRight,
-              child: FlatButton(
-                child: Text(
-                  "Cadastre-se aqui",
-                  style: TextStyle(
-                    color: Color(0XFF03A9F4),
-                    fontSize: 15,
+              child: Row(children: <Widget>[
+                Expanded(
+                  child: Container(
+                    child: Text(
+                      "Não possui uma conta?",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 11,
+                      ),
+                    ),
                   ),
-                  textAlign: TextAlign.right,
                 ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => SignupPage()));
-                },
-              ),
+                Expanded(
+                  child: Container(
+                    child: FlatButton(
+                      child: Text(
+                        "Cadastre-se aqui",
+                        style: TextStyle(
+                          color: Color(0XFF03A9F4),
+                          fontSize: 12,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    SignupPage()));
+                      },
+                    ),
+                  ),
+                ),
+              ]),
             ),
           ],
         ),

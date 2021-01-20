@@ -1,3 +1,4 @@
+import 'package:alugueai_mobile/pages/bottomNavigation.page.dart';
 import 'package:alugueai_mobile/pages/login.page.dart';
 import 'package:flutter/material.dart';
 
@@ -134,29 +135,50 @@ class SignupPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                BottomNavigation()));
+                  },
                 ),
               ),
             ),
             Container(
-              height: 40,
-              alignment: Alignment.centerRight,
-              child: FlatButton(
-                child: Text(
-                  "ou faça login aqui",
-                  style: TextStyle(
-                    color: Color(0XFF03A9F4),
-                    fontSize: 15,
+              child: Row(children: <Widget>[
+                Expanded(
+                  child: Container(
+                    child: Text(
+                      "Já possui uma conta?",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 11,
+                      ),
+                    ),
                   ),
-                  textAlign: TextAlign.right,
                 ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => LoginPage()));
-                },
-              ),
+                Expanded(
+                  child: Container(
+                    child: FlatButton(
+                      child: Text(
+                        "Faça login aqui",
+                        style: TextStyle(
+                          color: Color(0XFF03A9F4),
+                          fontSize: 12,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    LoginPage()));
+                      },
+                    ),
+                  ),
+                ),
+              ]),
             ),
           ],
         ),
