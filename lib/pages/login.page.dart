@@ -1,7 +1,16 @@
+import 'package:alugueai_mobile/pages/bottomNavigation.page.dart';
 import 'package:alugueai_mobile/pages/signup.page.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+import 'auth.page.dart';
+
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  var email, senha, data, token;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +41,10 @@ class LoginPage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
+              onChanged: (val) {
+                email = val;
+                print(email);
+              },
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(
@@ -48,6 +61,10 @@ class LoginPage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
+              onChanged: (val) {
+                senha = val;
+                print(senha);
+              },
               style: TextStyle(fontSize: 18),
             ),
             Container(
@@ -104,7 +121,23 @@ class LoginPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onPressed: () => {},
+                  onPressed: () {
+                    Auth().login(email, senha).then((val) {
+                      if (val.data['success']) {
+                        token = val.data['token'];
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    BottomNavigation()));
+                      }
+                    });
+                    /* Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                BottomNavigation())) */
+                  },
                 ),
               ),
             ),
