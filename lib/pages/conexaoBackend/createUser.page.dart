@@ -2,15 +2,20 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class Auth {
+class CreateUser {
   Dio dio = new Dio();
 
-  login(email, senha) async {
-    Dio dio = Dio();
+  signup(nome, telefone, endereco, email, senha) async {
     try {
-      return await dio.post('https://alugueai.herokuapp.com/sessao/anunciante',
-          data: {"mail": email, "senhaEntrada": senha},
-          options: Options(contentType: Headers.formUrlEncodedContentType));
+      Dio dio = new Dio();
+      return await dio
+          .post('https://alugueai.herokuapp.com/anunciante/cadastrar', data: {
+        "nome": nome,
+        "telefone": telefone,
+        "endereco": endereco,
+        "email": email,
+        "senha": senha
+      });
     } on DioError catch (e) {
       Fluttertoast.showToast(
           msg: e.response.data['msg'],

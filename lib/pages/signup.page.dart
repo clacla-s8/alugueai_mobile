@@ -1,8 +1,15 @@
 import 'package:alugueai_mobile/pages/bottomNavigation.page.dart';
+import 'package:alugueai_mobile/pages/conexaoBackend/createUser.page.dart';
 import 'package:alugueai_mobile/pages/login.page.dart';
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends StatefulWidget {
+  @override
+  _SignupPageState createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  var nome, telefone, endereco, email, senha;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +42,7 @@ class SignupPage extends StatelessWidget {
               height: 20,
             ),
             TextFormField(
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: "Nome",
                 labelStyle: TextStyle(
@@ -44,13 +51,16 @@ class SignupPage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
+              onChanged: (val) {
+                nome = val;
+              },
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(
               height: 10,
             ),
             TextFormField(
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: "Telefone",
                 labelStyle: TextStyle(
@@ -59,13 +69,16 @@ class SignupPage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
+              onChanged: (val) {
+                telefone = val;
+              },
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(
               height: 10,
             ),
             TextFormField(
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: "Endereço",
                 labelStyle: TextStyle(
@@ -74,6 +87,9 @@ class SignupPage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
+              onChanged: (val) {
+                endereco = val;
+              },
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(
@@ -89,6 +105,9 @@ class SignupPage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
+              onChanged: (val) {
+                email = val;
+              },
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(
@@ -105,6 +124,9 @@ class SignupPage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
+              onChanged: (val) {
+                senha = val;
+              },
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(
@@ -136,11 +158,18 @@ class SignupPage extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                BottomNavigation()));
+                    CreateUser()
+                        .signup(nome, telefone, endereco, email, senha)
+                        .then((val) {
+                      if (val.data['success']) {
+                        print("entrei");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    BottomNavigation()));
+                      }
+                    });
                   },
                 ),
               ),

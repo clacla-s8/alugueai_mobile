@@ -2,7 +2,7 @@ import 'package:alugueai_mobile/pages/bottomNavigation.page.dart';
 import 'package:alugueai_mobile/pages/signup.page.dart';
 import 'package:flutter/material.dart';
 
-import 'auth.page.dart';
+import 'conexaoBackend/auth.page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -132,11 +132,6 @@ class _LoginPageState extends State<LoginPage> {
                                     BottomNavigation()));
                       }
                     });
-                    /* Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                BottomNavigation())) */
                   },
                 ),
               ),
