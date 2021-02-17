@@ -1,8 +1,9 @@
 import 'package:alugueai_mobile/pages/bottomNavigation.page.dart';
 import 'package:alugueai_mobile/pages/signup.page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import 'conexaoBackend/auth.page.dart';
+import '../repositories/auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   var email, senha, data, token;
+  final storage = new FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,14 +124,17 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   onPressed: () {
-                    Auth().login(email, senha).then((val) {
+                    Auth().login(email, senha).then((val) async {
                       if (val.data['success']) {
                         token = val.data['token'];
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    BottomNavigation()));
+                        await storage.write(key: "token", value: token);
+                        Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                BottomNavigation(),
+                          ),
+                          (Route route) => false,
+                        );
                       }
                     });
                   },

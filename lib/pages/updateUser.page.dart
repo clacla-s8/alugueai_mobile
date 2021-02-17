@@ -1,20 +1,20 @@
-import 'package:alugueai_mobile/pages/bottomNavigation.page.dart';
 import 'package:alugueai_mobile/repositories/user.dart';
-import 'package:alugueai_mobile/pages/login.page.dart';
-
+import 'package:alugueai_mobile/pages/profile.page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-class SignupPage extends StatefulWidget {
+class UpdateUserPage extends StatefulWidget {
   @override
-  _SignupPageState createState() => _SignupPageState();
+  _UpdateUserPageState createState() => _UpdateUserPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _UpdateUserPageState extends State<UpdateUserPage> {
   var nome, telefone, endereco, email, senha;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(),
       body: Container(
         padding: EdgeInsets.only(
           top: 60,
@@ -29,7 +29,7 @@ class _SignupPageState extends State<SignupPage> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 40.0),
                 child: Text(
-                  'Cadastre-se',
+                  'Editar Perfil',
                   style: TextStyle(
                     fontFamily: 'Cardo',
                     fontSize: 35,
@@ -149,7 +149,7 @@ class _SignupPageState extends State<SignupPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Cadastrar",
+                        "Salvar",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -161,7 +161,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   onPressed: () {
                     CreateUser()
-                        .signup(nome, telefone, endereco, email, senha)
+                        .updateUser(nome, telefone, endereco, email, senha)
                         .then((val) {
                       if (val.data['success']) {
                         print("entrei");
@@ -169,50 +169,34 @@ class _SignupPageState extends State<SignupPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    BottomNavigation()));
+                                    ProfilePageDesign()));
                       }
                     });
                   },
                 ),
               ),
             ),
-            Container(
-              child: Row(children: <Widget>[
-                Expanded(
-                  child: Container(
-                    child: Text(
-                      "Já possui uma conta?",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 11,
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    child: FlatButton(
-                      child: Text(
-                        "Faça login aqui",
-                        style: TextStyle(
-                          color: Color(0XFF03A9F4),
-                          fontSize: 12,
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    LoginPage()));
-                      },
-                    ),
-                  ),
-                ),
-              ]),
-            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+  @override
+  Size get preferredSize => Size(double.infinity, 50);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.white,
+      leading: IconButton(
+        icon: SvgPicture.asset(
+          'assets/icons/back.svg',
+          color: Colors.lightBlue,
+        ),
+        onPressed: () => Navigator.pop(context),
       ),
     );
   }

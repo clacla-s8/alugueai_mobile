@@ -1,16 +1,15 @@
 import 'package:alugueai_mobile/pages/bottomNavigation.page.dart';
-import 'package:alugueai_mobile/repositories/user.dart';
-import 'package:alugueai_mobile/pages/login.page.dart';
+import 'package:alugueai_mobile/repositories/object.dart';
 
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatefulWidget {
+class RegisterObject extends StatefulWidget {
   @override
-  _SignupPageState createState() => _SignupPageState();
+  _RegisterObjectState createState() => _RegisterObjectState();
 }
 
-class _SignupPageState extends State<SignupPage> {
-  var nome, telefone, endereco, email, senha;
+class _RegisterObjectState extends State<RegisterObject> {
+  var nome, preco, img, categoria;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +26,12 @@ class _SignupPageState extends State<SignupPage> {
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.only(left: 40.0),
+                padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
-                  'Cadastre-se',
+                  'Cadastrar objeto',
                   style: TextStyle(
                     fontFamily: 'Cardo',
-                    fontSize: 35,
+                    fontSize: 30,
                     color: Color(0XFF03A9F4),
                     fontWeight: FontWeight.w900,
                   ),
@@ -64,7 +63,7 @@ class _SignupPageState extends State<SignupPage> {
             TextFormField(
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                labelText: "Telefone",
+                labelText: "Preço",
                 labelStyle: TextStyle(
                   color: Colors.black38,
                   fontWeight: FontWeight.w400,
@@ -72,7 +71,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               onChanged: (val) {
-                telefone = val;
+                preco = val;
               },
               style: TextStyle(fontSize: 18),
             ),
@@ -82,7 +81,7 @@ class _SignupPageState extends State<SignupPage> {
             TextFormField(
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                labelText: "Endereço",
+                labelText: "Imagem",
                 labelStyle: TextStyle(
                   color: Colors.black38,
                   fontWeight: FontWeight.w400,
@@ -90,7 +89,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               onChanged: (val) {
-                endereco = val;
+                img = val;
               },
               style: TextStyle(fontSize: 18),
             ),
@@ -100,7 +99,7 @@ class _SignupPageState extends State<SignupPage> {
             TextFormField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: "Email",
+                labelText: "Categoria",
                 labelStyle: TextStyle(
                   color: Colors.black38,
                   fontWeight: FontWeight.w400,
@@ -108,28 +107,12 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               onChanged: (val) {
-                email = val;
+                categoria = val;
               },
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(
               height: 10,
-            ),
-            TextFormField(
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: "Senha",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18,
-                ),
-              ),
-              onChanged: (val) {
-                senha = val;
-              },
-              style: TextStyle(fontSize: 18),
             ),
             SizedBox(
               height: 10,
@@ -160,8 +143,8 @@ class _SignupPageState extends State<SignupPage> {
                     ],
                   ),
                   onPressed: () {
-                    CreateUser()
-                        .signup(nome, telefone, endereco, email, senha)
+                    CreateObject()
+                        .registerObj(nome, preco, img, categoria)
                         .then((val) {
                       if (val.data['success']) {
                         print("entrei");
@@ -175,41 +158,6 @@ class _SignupPageState extends State<SignupPage> {
                   },
                 ),
               ),
-            ),
-            Container(
-              child: Row(children: <Widget>[
-                Expanded(
-                  child: Container(
-                    child: Text(
-                      "Já possui uma conta?",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 11,
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    child: FlatButton(
-                      child: Text(
-                        "Faça login aqui",
-                        style: TextStyle(
-                          color: Color(0XFF03A9F4),
-                          fontSize: 12,
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    LoginPage()));
-                      },
-                    ),
-                  ),
-                ),
-              ]),
             ),
           ],
         ),

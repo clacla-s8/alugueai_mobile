@@ -1,4 +1,9 @@
-import 'package:alugueai_mobile/pages/home.page.dart';
+//import 'package:alugueai_mobile/pages/home.page.dart';
+
+import 'package:alugueai_mobile/pages/home/components/body.dart';
+import 'package:alugueai_mobile/pages/profile.page.dart';
+import 'package:alugueai_mobile/pages/registerObject.page.dart';
+import 'package:alugueai_mobile/pages/rent.page.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -10,16 +15,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex = 0;
 
   final List<Widget> navigatePages = [
-    HomePage(),
-    Center(
-      child: Text("Alugueis"),
-    ),
+    Body(),
+    RegisterObject(),
+    RentPage(),
     Center(
       child: Text("chat"),
     ),
-    Center(
-      child: Text("perfil"),
-    ),
+    ProfilePageDesign()
   ];
 
   @override
@@ -34,6 +36,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: ('Início'),
+              backgroundColor: Colors.lightBlue),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.app_registration),
+              label: ('Cadastro'),
               backgroundColor: Colors.lightBlue),
           BottomNavigationBarItem(
               icon: Icon(Icons.featured_play_list_rounded),
