@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:alugueai_mobile/pages/bottomNavigation.page.dart';
 import 'package:alugueai_mobile/repositories/object.dart';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterObject extends StatefulWidget {
   @override
@@ -10,6 +13,21 @@ class RegisterObject extends StatefulWidget {
 
 class _RegisterObjectState extends State<RegisterObject> {
   var nome, preco, img, categoria;
+
+  File _image;
+  final picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +96,17 @@ class _RegisterObjectState extends State<RegisterObject> {
             SizedBox(
               height: 10,
             ),
-            TextFormField(
+            Center(
+              child: _image == null
+                  ? Text('Selecione uma imagem.')
+                  : Image.file(_image),
+            ),
+            FloatingActionButton(
+              onPressed: getImage,
+              tooltip: 'Pick Image',
+              child: Icon(Icons.add_a_photo),
+            ),
+            /* TextFormField(
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: "Imagem",
@@ -92,7 +120,7 @@ class _RegisterObjectState extends State<RegisterObject> {
                 img = val;
               },
               style: TextStyle(fontSize: 18),
-            ),
+            ), */
             SizedBox(
               height: 10,
             ),

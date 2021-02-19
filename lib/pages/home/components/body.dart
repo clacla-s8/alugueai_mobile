@@ -74,12 +74,12 @@ class _BodyState extends State<Body> {
                                 // height: 180,
                                 // width: 160,
                                 decoration: BoxDecoration(
-                                  color: Colors.blueAccent,
+                                  color: Colors.lightBlue[50],
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Hero(
                                   tag: "${item.nome}",
-                                  child: Image.asset(item.img),
+                                  child: Icon(Icons.photo_camera),
                                 ),
                               ),
                             ),
