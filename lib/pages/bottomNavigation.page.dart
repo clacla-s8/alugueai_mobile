@@ -1,6 +1,6 @@
 //import 'package:alugueai_mobile/pages/home.page.dart';
 
-import 'package:alugueai_mobile/pages/home/components/body.dart';
+import 'package:alugueai_mobile/pages/home/homeScreen.dart';
 import 'package:alugueai_mobile/pages/profile.page.dart';
 import 'package:alugueai_mobile/pages/registerObject.page.dart';
 import 'package:alugueai_mobile/pages/rent.page.dart';
@@ -15,7 +15,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex = 0;
 
   final List<Widget> navigatePages = [
-    Body(),
+    HomeScreen(),
     RegisterObject(),
     RentPage(),
     Center(

@@ -6,12 +6,12 @@ import 'package:alugueai_mobile/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Body extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _BodyState createState() => _BodyState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _BodyState extends State<Body> {
+class _HomeScreenState extends State<HomeScreen> {
   Future<List<ObjectModel>> objectFuture;
   ObjetoRepository _repository = ObjetoRepository();
 
