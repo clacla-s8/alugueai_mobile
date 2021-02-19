@@ -47,13 +47,58 @@ class _BodyState extends State<Body> {
                       ),
                     );
                   } else {
-                    return ListView.builder(
+                    //ListView.builder
+                    return GridView.builder(
                       itemCount: snapshot.data.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: kDefaultPaddin,
+                        crossAxisSpacing: kDefaultPaddin,
+                        childAspectRatio: 0.75,
+                      ),
                       itemBuilder: (_, index) {
                         var item = snapshot.data[index];
-                        return ListTile(
+                        /* return ListTile(
+                          //leading: Text(item.img),
                           title: Text(item.nome),
                           subtitle: Text(item.preco),
+                        ); */
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.all(kDefaultPaddin),
+                                // For  demo we use fixed height  and width
+                                // Now we dont need them
+                                // height: 180,
+                                // width: 160,
+                                decoration: BoxDecoration(
+                                  color: Colors.blueAccent,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Hero(
+                                  tag: "${item.nome}",
+                                  child: Image.asset(item.img),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: kDefaultPaddin),
+                              child: Text(
+                                // products is out demo list
+                                item.nome,
+                                style: TextStyle(
+                                    color: kTextLightColor, fontSize: 20),
+                              ),
+                            ),
+                            Text(
+                              "R\$${item.preco}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 15),
+                            )
+                          ],
                         );
                       },
                     );
