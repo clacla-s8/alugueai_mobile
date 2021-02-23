@@ -93,39 +93,8 @@ class _RegisterObjectState extends State<RegisterObject> {
               },
               style: TextStyle(fontSize: 18),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Center(
-              child: _image == null
-                  ? Text('Selecione uma imagem.')
-                  : Image.file(_image),
-            ),
-            FloatingActionButton(
-              onPressed: getImage,
-              tooltip: 'Pick Image',
-              child: Icon(Icons.add_a_photo),
-            ),
-            /* TextFormField(
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: "Imagem",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18,
-                ),
-              ),
-              onChanged: (val) {
-                img = val;
-              },
-              style: TextStyle(fontSize: 18),
-            ), */
-            SizedBox(
-              height: 10,
-            ),
             TextFormField(
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: "Categoria",
                 labelStyle: TextStyle(
@@ -138,6 +107,19 @@ class _RegisterObjectState extends State<RegisterObject> {
                 categoria = val;
               },
               style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: _image == null
+                  ? Text('Selecione uma imagem.')
+                  : Image.file(_image),
+            ),
+            FloatingActionButton(
+              onPressed: getImage,
+              tooltip: 'Pick Image',
+              child: Icon(Icons.add_a_photo),
             ),
             SizedBox(
               height: 10,
@@ -172,7 +154,7 @@ class _RegisterObjectState extends State<RegisterObject> {
                   ),
                   onPressed: () {
                     CreateObject()
-                        .registerObj(nome, preco, img, categoria)
+                        .registerObj(nome, preco, _image, categoria)
                         .then((val) {
                       if (val.data['success']) {
                         print("entrei");

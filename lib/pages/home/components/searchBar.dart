@@ -1,5 +1,3 @@
-import 'package:alugueai_mobile/pages/models/Object.dart';
-import 'package:alugueai_mobile/repositories/objetosRepository.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedSearchBar extends StatefulWidget {
@@ -9,8 +7,7 @@ class AnimatedSearchBar extends StatefulWidget {
 
 class _AnimatedSearchBarState extends State<AnimatedSearchBar> {
   bool _folded = false;
-  Future<List<ObjectModel>> objectFuture;
-  ObjetoRepository _repository = ObjetoRepository();
+
   TextEditingController _buscaController = TextEditingController();
 
   @override
@@ -57,14 +54,14 @@ class _AnimatedSearchBarState extends State<AnimatedSearchBar> {
                 ),
                 onTap: () {
                   setState(() {
-                    if (_buscaController.text.isEmpty) {
-                      objectFuture = _repository.findAll();
-                      print("findall");
-                    } else {
-                      objectFuture =
-                          _repository.findFilter(_buscaController.text);
-                      print("filter");
-                    }
+                    // busca = _buscaController.text.trim();
+                    // if (_buscaController.text.isEmpty) {
+                    //   _repository.findAll();
+                    //   print("findall");
+                    // } else {
+                    //   _repository.findFilter(_buscaController.text);
+                    //   print("filter");
+                    // }
                   });
                 },
               ),

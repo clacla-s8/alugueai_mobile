@@ -8,13 +8,25 @@ class CreateObject {
   registerObj(nome, preco, img, categoria) async {
     try {
       Dio dio = new Dio();
+
+      String fileName = img.path.split('/').last;
+
+      print(img);
+      print(fileName);
+
       return await dio
-          .post('https://alugueaimeu.herokuapp.com/objeto/cadastrar', data: {
-        "nome": nome,
-        "preco": preco,
-        "img": img,
-        "categoria": categoria
-      });
+          .post('https://alugueaimeu.herokuapp.com/objeto/cadastrar',
+              data: FormData.fromMap({
+                "nome": nome,
+                "preco": preco,
+                "img": await MultipartFile.fromFile(
+                  img.path,
+                  filename: fileName,
+                ),
+                "categoria": categoria
+              }))
+          .then((response) => print(response))
+          .catchError((error) => print(error));
     } on DioError catch (e) {
       Fluttertoast.showToast(
           msg: e.response.data['msg'],
